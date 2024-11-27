@@ -2,6 +2,7 @@ package it.unibo.mvc;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -23,7 +24,7 @@ public final class SimpleGUI {
     private final Controller controller; 
     private final JFrame frame = new JFrame();
 
-    public SimpleGUI(){
+    public SimpleGUI() {
         this.controller = new Controller();
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
@@ -32,10 +33,12 @@ public final class SimpleGUI {
         final JButton save = new JButton("Save");
         save.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0) {
+            public void actionPerformed(final ActionEvent arg0) {
                 try {
                     controller.setFileContent(text.getText());
-                } catch (IOException e) {}
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(frame, e, "error", JOptionPane.ERROR_MESSAGE);
+                 }
             }
         });
         canvas.add(save, BorderLayout.SOUTH);
@@ -43,7 +46,7 @@ public final class SimpleGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void display(){
+    public void display() {
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
@@ -54,7 +57,7 @@ public final class SimpleGUI {
     }
 
 
-    public static void main(String[] args){
+    public static void main(final String[] args) {
         new SimpleGUI().display();
     }
 
