@@ -3,7 +3,7 @@ package it.unibo.mvc;
 import java.util.List;
 
 /**
- *Controller should be used to fulfill to standard output operation in a MVC pattern
+ *Controller should be used to fulfill the output operation in a MVC pattern
  */
 public interface Controller {
 
