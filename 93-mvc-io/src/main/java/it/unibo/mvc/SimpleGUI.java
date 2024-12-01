@@ -25,7 +25,7 @@ public final class SimpleGUI {
     private final JFrame frame = new JFrame();
 
     /**
-     * Constructor that simply crate an instance of the simple GUI
+     * Constructor that simply crate an instance of the simple GUI.
      */
     public SimpleGUI() {
         final JPanel mainPanel = new JPanel();
@@ -38,13 +38,13 @@ public final class SimpleGUI {
         final JButton showH = new JButton("Show History");
         print.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.out.println(controller.getLine());                
-            }            
+            public void actionPerformed(final ActionEvent arg0) {
+                System.out.println(controller.getLine()); // NOPMD: allowed in exercises
+            }
         });
         showH.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                    output.setText(controller.getHistoryLine().toString());
             }
         });
@@ -54,18 +54,25 @@ public final class SimpleGUI {
         panel.add(showH);
         mainPanel.add(panel, BorderLayout.SOUTH);
         this.frame.setContentPane(mainPanel);
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      
+        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
+
+    /**
+     * This function display the created frame.
+     */
     public void display() {
-        final Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();  
+        final Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
         final int sh = (int) screenDimension.getHeight();
         final int sw = (int) screenDimension.getWidth();
         this.frame.setSize(sw / PROPORTION, sh / PROPORTION);
         this.frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    /**
+     * Main method which deal for starting execution.
+     * @param args
+     */
+    public static void main(final String[] args) {
         new SimpleGUI().display();
     }
 }

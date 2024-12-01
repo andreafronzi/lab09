@@ -3,31 +3,31 @@ package it.unibo.mvc;
 import java.util.List;
 
 /**
- *Controller should be used to fulfill the output operation in a MVC pattern
+ *Controller should be used to fulfill the output operation in a MVC pattern.
  */
 public interface Controller {
 
     /**
-     * This method shall set the next string to print
+     * This method shall set the next string to print.
      * @param newLine
-     * @throws NullpointerException if {@code newLine} is null
+     * @throws NullpointerException if {@code newLine} is null.
      */
     void setLine(String newLine);
 
     /**
      * 
-     * @return the next string to print
+     * @return the next string to print.
      */
     String getLine();
 
     /**
      * 
-     * @return the history of the printed Strings
+     * @return the history of the printed Strings.
      */
     List<String> getHistoryLine();
 
     /**
-     * This method print the string previously setted
+     * This method print the string previously setted.
      */
     void printString();
 }
