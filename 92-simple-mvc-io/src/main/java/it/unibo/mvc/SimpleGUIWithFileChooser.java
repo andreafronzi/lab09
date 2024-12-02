@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -41,11 +42,13 @@ public final class SimpleGUIWithFileChooser {
         this.controller = new Controller();
         final JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
+        final JPanel northPanel = new JPanel();
+        northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.LINE_AXIS));
         final JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         final JTextField text = new JTextField();
         text.setEditable(false);
-        final JButton browse = new JButton("Browse");
+        final JButton browse = new JButton("Browse...");
         browse.addActionListener(new ActionListener() {
 
             @Override
@@ -65,15 +68,29 @@ public final class SimpleGUIWithFileChooser {
                     } catch (IOException e) {
                         JOptionPane.showMessageDialog(frame, e, "Error on writing on File", JOptionPane.ERROR_MESSAGE);
                     }
-                }             
+                } else {
+                    if(returnedVal != JFileChooser.CANCEL_OPTION) {
+                        JOptionPane.showMessageDialog(frame, "Error on open file", "An Error occuring during opening file",JOptionPane.ERROR_MESSAGE);
+                    }
+                }            
+            }
+            
+        });
+        final JButton save = new JButton("Save");
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent arg0) {
+                                
             }
             
         });
 
-        panel.add(text, BorderLayout.CENTER);
-        panel.add(browse, BorderLayout.SOUTH);
+        northPanel.add(text);
+        northPanel.add(browse);
+        panel.add(northPanel, BorderLayout.NORTH);
         mainPanel.add(panel);
         frame.setContentPane(mainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
 
